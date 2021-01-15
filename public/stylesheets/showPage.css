@@ -1,0 +1,45 @@
+.user-pfp {
+    border-radius: 50%;
+}
+  
+  .user-pfp:hover {
+    opacity: 0.8;
+  }
+
+  .author-date-read {
+    font-family: Open Sans, sans-serif;
+  }
+
+  .nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+ .show-post-title-font {
+  font-family: Oswald, sans-serif;
+ }
+
+ .author-font-color {
+  color: #c44900;
+ }
+
+ .nounderline {
+  text-decoration: none !important
+}
+
+.navbar.scrolled {
+  background: red;
+  transition: background 500ms;
+}
+
+header.nav-fixed {
+  width: 100%;
+  position: fixed;
+  transition: 0.3s ease-in-out;
+}
+
+.nav-active {
+  background-color:#fff;
+  box-shadow: 5px -1px 12px -5px grey;
+}
+

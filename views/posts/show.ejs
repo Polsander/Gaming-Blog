@@ -1,0 +1,181 @@
+<% layout('layout/boilerplate') %>
+    <nav id="mynav" class="navbar nav-fixed sticky-top navbar-expand-lg navbar-light p-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="https://res.cloudinary.com/brothersingaming/image/upload/w_35,h_35,c_fill,g_auto/v1610046143/broingam_logo_x5xdfc.png" alt="">
+              </a>
+              <a class="navbar-brand" href="/">Brothers in Gaming <span class="title-two"><strong><u>2</u></strong></span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="/posts/new">New Post</a>
+                    <a class="nav-link" href="/posts">All Posts</a>
+                    <a class="nav-link" href="/about">About</a>
+                </div>
+                <div class="navbar-nav ms-auto">
+                    <% if (!currentUser) { %>
+                        <a class="nav-link" href="/users/login">Visiting as guest</a>
+                        <a class="nav-link" href="/users/login">Login</a>
+                        <a class="nav-link" href="/users/register">Register</a>
+                        <% } else {%>
+                           <% if (currentUser.url) { %>
+                              <a href="<%=currentUser.url%>"><img
+                                    src="<%= currentUser.url.replace('/upload', '/upload/w_35,h_35,c_fill,g_auto') %>"
+                                    class="user-pfp pt-1" alt=""></a>
+                              <% } else { %>
+                                 <a
+                                    href="https://res.cloudinary.com/brothersingaming/image/upload/v1609978288/no_user_image_nkrjeo.png"><img
+                                       src="https://res.cloudinary.com/brothersingaming/image/upload/w_35,h_35,c_fill,g_auto/v1609978288/no_user_image_nkrjeo.png"
+                                       class="user-pfp pt-1" alt=""></a>
+                                 <% } %>
+                                    <a class="nav-link" href="#">
+                                       <%=currentUser.username%>
+                                    </a>
+                                    <a class="nav-link" href="/users/logout">Logout</a>
+                                    <% } %>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <%- include('../partials/flash') %>
+    <div class=" col-md-7 col-lg-7 col-xl-6 container pt-1">
+        
+        <div class="row">
+            <div class="col text-left">
+                <h1 class="show-post-title-font">
+                    <%= post.title %>
+                </h1>
+            </div>
+        </div>
+        <div class="row p-3">
+            <div class="col-2 col-md-1 col-lg-1 ">
+                <% if (post.author.url) { %>
+                    <a href="<%=post.author.url%>"><img
+                            src="<%= post.author.url.replace('/upload', '/upload/w_35,h_35,c_fill,g_auto') %>"
+                            class="user-pfp" alt=""></a>
+                    <% } else{ %>
+                        <a
+                            href="https://res.cloudinary.com/brothersingaming/image/upload/v1609978288/no_user_image_nkrjeo.png"><img
+                                src="https://res.cloudinary.com/brothersingaming/image/upload/w_35,h_35,c_fill,g_auto/v1609978288/no_user_image_nkrjeo.png"
+                                class="user-pfp" alt=""></a>
+                        <% } %>
+            </div>
+            <div class="col">
+                <div class="container px-1">
+                    <div class="row">
+                        <div class="col pt-2">
+                            <p class="author-date-read text-muted">
+                                <a href="#" class="nounderline"><span class="author-font-color">
+                                        <%=post.author.username %>
+                                    </span>&nbsp;</a>
+                                <%= post.date %> • <%=post.readTime %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="container mx-auto">
+                <img src="<%= post.url %>" alt="" class="img-fluid">
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <p style="white-space: pre-line" class="post-body-font">
+                <%= post.body %>
+            </p>
+        </div>
+
+
+        <div class="row">
+            <div class="col-6 col-md-4 px-1">
+                <% if(currentUser && post.author.equals(currentUser._id)) {%>
+                    <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger">Delete Post</button>
+                    </form>
+            </div>
+            <div class="col justify-content-left">
+                <form class="d-inline" method="GET" action="<%=post._id%>/edit">
+                    <button class="btn btn-warning">Edit Post</button>
+                </form>
+                <% } %>
+            </div>
+        </div>
+
+
+        
+        <% if(currentUser) { %>
+            <h3 class="mt-5">Leave A Comment</h3>
+            <form class="mb-3 validated-form" action="/comments/<%=post._id%>/comment" method="POST"
+                novalidate>
+
+                <div class="mb-3">
+                    <label class="form-label" for="body">Comment</label>
+                    <textarea class="form-control" name="comment[body]" id="body"
+                        required></textarea>
+
+                </div>
+                <button class="btn btn-success btn-sm">Submit</button>
+            </form>
+            <% } %>
+
+                <div class="mb-3 row justify-content-center">
+                    <div class="col">
+                        <% for (let comment of post.comments) { %>
+                            <div class="card mb-2">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <% if (comment.author.url) { %>
+                                            <a href="<%=comment.author.url%>">
+                                                <img class="user-pfp"
+                                                    src="<%=comment.author.url.replace('/upload', '/upload/w_35,h_35,c_fill,g_auto')%>"
+                                                    alt=""></a>
+                                            <% } else {%>
+                                                <a
+                                                    href="https://res.cloudinary.com/brothersingaming/image/upload/v1609978288/no_user_image_nkrjeo.png">
+                                                    <img class="user-pfp"
+                                                        src="https://res.cloudinary.com/brothersingaming/image/upload/w_35,h_35,c_fill,g_auto/v1609978288/no_user_image_nkrjeo.png"
+                                                        alt=""></a>
+                                                <% } %>
+                                                    <%=comment.author.username%>
+                                    </h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">
+                                        <%= comment.date %>
+                                    </h6>
+                                    <p class="card-text">
+                                        <%=comment.body%>
+                                    </p>
+                                    <!-- <button id='reply' class="btn btn-link btn-sm">Reply</button> -->
+                                    <div style="display: none;" id="replybody">
+                                    </div>
+                                    <% if(currentUser && comment.author.equals(currentUser._id)) {%>
+                                        <form class="d-inline"
+                                            action="/comments/<%=post._id%>/comment/<%=comment._id%>?_method=DELETE"
+                                            method="POST">
+                                            <button class="btn btn-sm btn-danger">Delete</button>
+                                        </form>
+                                        <% } %>
+                                </div>
+                            </div>
+                            <% } %>
+                    </div>
+
+                </div>
+
+
+    </div>
+
+    <script>
+        const navbar = document.querySelector('.nav-fixed');
+        window.onscroll = () => {
+            if (window.scrollY > 0) {
+                navbar.classList.add('nav-active');
+            } else {
+                navbar.classList.remove('nav-active');
+            }
+        };
+    </script>

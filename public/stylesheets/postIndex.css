@@ -1,0 +1,65 @@
+.nounderline {
+    text-decoration: none !important
+  }
+
+.title-two {
+    color: darkred;
+    font-size: larger;
+    font-family: Bebas Neue, sans-serif;
+}
+
+.post-title-font {
+    font-family: Abril Fatface, sans-serif;
+}
+
+.post-body-font {
+    font-family: Open Sans, sans-serif;
+}
+
+.pick-font {
+    font-family: Lobster, sans-serif;
+    font-size: 2rem;
+}
+
+.post-index-author-font {
+    font-family: Open Sans, sans-serif;
+    font-size: .9rem;
+}
+
+.post-border {
+    border-bottom: 1px solid black;
+    border-top: none;
+    border-left:none;
+    border-right:none;
+}
+/* 
+.post-border:hover {
+    border: 1px solid lightblue;
+} */
+
+.post-background {
+    background: transparent;
+    transition: background .25s;
+}
+
+.post-background:hover {
+    background: #e9ecef;
+    transform: translateY(-.25em);
+}
+
+
+.background-colour-posts {
+    background: white;
+}
+
+.background-none{
+    background: transparent;
+}
+
+.pick-img {
+    border-radius: 30%;
+}
+
+.post-index-bg {
+  background: rgba(255, 255, 255, .75);
+}

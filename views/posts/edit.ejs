@@ -1,0 +1,31 @@
+<% layout('layout/boilerplate') %> 
+<%- include('../partials/nav') %>
+   <%- include('../partials/flash') %>
+    <div class="row">
+        <h1 class="text-center">Edit Post</h1>
+             <div>
+                 <form action="/posts/<%=post._id%>?_method=PUT" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Choose your image</label>
+                        <input class="form-control" type="file" id="image" name="image">
+                      </div>
+                     <div class="mb-3">
+                         <label class="form-label" for="title">Title</label>
+                         <br>
+                         <input class="form-control" type="text" name="post[title]" id="title" required value="<%=post.title%>">
+                         <div class="valid-feedback"> Looks Good!</div>
+                     </div>
+                     <div class="mb-3">
+                         <label class="form-label" for="body">Body</label>
+                         <br>
+                         <textarea class="form-control" name="post[body]" id="body" cols="20" rows="20" required><%=post.body%></textarea>
+                         <div class="valid-feedback"> Looks Good!</div>
+                     </div>
+                     <div class="mb-3">
+                     <button class="btn btn-success">Edit Post</button>
+                 </div>   
+                 </form>
+             </div>
+        </div>
+    <a href="/posts/<%=post._id%>">Back to post</a>

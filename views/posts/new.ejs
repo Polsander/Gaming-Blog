@@ -1,0 +1,78 @@
+<% layout('layout/boilerplate') %>
+<nav class="navbar sticky-top navbar-expand-lg bg-white navbar-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Brothers in Gaming <span class="title-two"><strong><u>2</u></strong></span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" href="/posts/new">New Post</a>
+          <a class="nav-link" href="/posts">All Posts</a>
+          <a class="nav-link" href="/about">About</a>
+        </div>
+        <div class="navbar-nav ms-auto">
+          <% if (!currentUser) { %>
+            <a class="nav-link" href="/users/login">Visiting as guest</a>
+            <a class="nav-link" href="/users/login">Login</a>
+            <a class="nav-link" href="/users/register">Register</a>
+            <% } else {%>
+               <% if (currentUser.url) { %>
+                  <a href="<%=currentUser.url%>"><img
+                        src="<%= currentUser.url.replace('/upload', '/upload/w_35,h_35,c_fill,g_auto') %>"
+                        class="user-pfp pt-1" alt=""></a>
+                  <% } else { %>
+                     <a
+                        href="https://res.cloudinary.com/brothersingaming/image/upload/v1609978288/no_user_image_nkrjeo.png"><img
+                           src="https://res.cloudinary.com/brothersingaming/image/upload/w_35,h_35,c_fill,g_auto/v1609978288/no_user_image_nkrjeo.png"
+                           class="user-pfp pt-1" alt=""></a>
+                     <% } %>
+                        <a class="nav-link" href="#">
+                           <%=currentUser.username%>
+                        </a>
+                        <a class="nav-link" href="/users/logout">Logout</a>
+                        <% } %>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+    <div class="container">
+        <div class="row">
+            <h1 class="text-center">New Post</h1>
+            <div class="col-6 offset-3">
+                <form action="/posts" method="POST" novalidate class="validated-form"
+                    enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label class="form-label" for="title">Title</label>
+                        <br>
+                        <input class="form-control" type="text" name="post[title]" id="title"
+                            required>
+                        <div class="valid-feedback"> Looks Good!</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Choose your image</label>
+                        <input class="form-control" type="file" id="image" name="image">
+                    </div>
+                    <!-- <div class="mb-3">
+                    <label class="form-label" for="title">Image</label>
+                    <br>
+                    <input class="form-control" type="text" name="post[image]" id="image" required >
+                    <div class="valid-feedback"> Looks Good!</div>
+                </div> -->
+                    <div class="mb-3">
+                        <label class="form-label" for="body">Body</label>
+                        <br>
+                        <textarea class="form-control" name="post[body]" id="body" cols="20"
+                            rows="20" required></textarea>
+                        <div class="valid-feedback"> Looks Good!</div>
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-success">Add Post!</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

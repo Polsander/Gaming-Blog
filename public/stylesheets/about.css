@@ -1,0 +1,52 @@
+html {
+    height: 100%;
+}
+body {
+    background-image: url("https://i.pinimg.com/originals/d5/64/e2/d564e2b147edcec22f7e799ee2796fa5.jpg");
+    /* background: linear-gradient(black, grey, grey, black); */
+    background-size: cover;
+    background-color: black;
+    /* background-repeat: no-repeat; */
+    background-position: center;
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    text-shadow: 1px 1px 2px black;
+
+}
+
+.white {
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 5rem;
+}
+
+h2 {
+    margin: 0px;
+    padding: 0px;
+    margin-top: 6rem;
+}
+
+#Oliver-image {
+    border: 5px solid;
+}
+
+#Fernando-image {
+    border: 5px solid;
+    max-width: 340px;
+    
+}
+.spacing {
+    margin-top: 7rem;
+}
+
+.text-background {
+    background-color: rgba(0, 0, 0, 0.85);
+    color: white;
+    margin:0;
+    
+}

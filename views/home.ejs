@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brothers in Gaming</title>
+    <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/home.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+    <link rel="icon" href="https://res.cloudinary.com/brothersingaming/image/upload/v1610046143/broingam_logo_x5xdfc.png">
+</head>
+
+<body class="d-flex text-center text-white">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="mb-auto">
+            <div>
+                <a class="navbar-brand float-md-left" href="/">
+                    <img src="https://res.cloudinary.com/brothersingaming/image/upload/w_35,h_35,c_fill,g_auto/v1610046143/broingam_logo_x5xdfc.png"
+                        alt="">
+                </a>
+                <h3 class="float-md-left mb-0">Brothers in Gaming <span class="title-two"><strong><u>2</u></strong></span></h3>
+                <nav class="nav nav-masthead justify-content-center float-md-right">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link" href="/posts">Posts</a>
+                   <%  if(!currentUser) { %>
+                    <a class="nav-link" href="/users/login">Login</a>
+                    <a class="nav-link" href="/users/register">Register</a>
+                     <%} else { %>
+                    <a class="nav-link" href="users/logout">Logout</a>
+                    <% } %>
+                </nav>
+                
+            </div>
+        </header>
+
+        <main class="px-3">
+            <h1>Brothers in Gaming</h1>
+
+
+            <h2 class="mt-3 text-left"> Latest Posts:</h2>
+            <!-- this is the carousel :)) -->
+            <div id="carouselExampleControls" class="carousel slide mt-2" data-ride="carousel">
+                <div class="carousel-inner">
+                    <% posts.forEach((article, i)=> { %>
+                        <div class="carousel-item  <%= i=== 0 ? 'active' : '' %>">
+                            <div class="appear-on-hover">
+                                <div class="item">
+                                    <a href="/posts/<%=article._id%>">
+                                        <img id="carousel-image"
+                                            class="d-block w-100 img-responsive img-opacity"
+                                            src="<%=article.url.replace('/upload', '/upload/w_900,h_700,c_fill,g_auto,q_auto,f_auto')%>"
+                                            alt="First slide">
+                                    </a>
+                                </div>
+                                <a href="/posts/<%=article._id%>">
+                                <h3 id="preview-text"
+                                    class="hover-text display-2 me-auto text-left title-preview">
+                                    <%= article.title.length> 30 ? article.title.substr(0,30) +'...'
+                                        : article.title %>
+                                </h3>
+                            </a>
+                            </div>
+                        </div>
+                        <% }) %>
+
+                            <a class="carousel-control-prev" href="#carouselExampleControls"
+                                role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleControls"
+                                role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                </div>
+                <div class="paragraph-spacing"></div>
+                <p id='intro' class="lead"> Welcome to Brothers in Gaming! <br> A place for gaming
+                    enthusiasts,
+                    by
+                    gaming enthusiasts. <br>
+                    Feel free to sign up and start posting on our website, happy blogging!</p>
+                <a href="/posts"
+                    class="btn btn-lg btn-secondary font-weight-bold border-white bg-white glow">View
+                    Posts</a>
+
+                <div class="spacing3"></div>
+                <div id="section-2" class="mb-4" name="section-2">
+                    <h2> What is this site?</h2>
+                    <p>
+                        Brothers In Gaming is a blog site, a site where you can access your
+                        favourite information on both new school,
+                        old school video games. It's a site where a community can get together and
+                        talk about their favourite (or least favourite)
+                        games, characters, and just about anything else you can think of! This
+                        website is currently under development, and will soon be
+                        the new and improved version of BrothersInGaming.com! There are still bits
+                        of development work to be done, but luck for you,
+                        the website is fully functional!
+                    </p>
+                    <br>
+                    <p> That being said,</p>
+                    <h3>Here are some of the things you can do:</h3>
+                    <div class="spacing3"></div>
+                    <div class="row">
+                        <div id="img-1" class="col-5 d-none d-xl-block d-xxl-block my-auto"
+                            data-aos="fade-right" data-aos-delay="800">
+                            <img class=" w-100 me-auto"
+                                src="https://i.pinimg.com/originals/93/7b/a9/937ba9c318ce4d64fa89ac5ae2b6aade.jpg">
+                        </div>
+                        <!-- <div class="col-2"></div> -->
+                        <div id="side-text-1" class=" item col" data-aos="fade-left">
+                            <h3 class="mb-5 mt-2">Enter the Fray of Blogs!</h3>
+                            <p class="mt-3 h6 lead"> Get reading and expose yourself to some epic
+                                articles written by gamers around the world!
+                                Many articles include a variety of categories that can suit to what
+                                you're looking for.
+                                <br><br>
+                                Whether they're guides,
+                                tutorials, opinions, or product recommendations, we got them!
+                                <br><br>
+                                Don't get too excited though! You might loose track of time and give
+                                yourself sore eyes from too much reading.
+                            </p>
+
+                        </div>
+                    </div>
+                    <div> </div>
+                    <div class="spacing"></div>
+                    <div class="row mt-8 ">
+                        <div class="col col-md-12 col-lg-6 mt-3" id="side-text-1"
+                            data-aos="fade-bottom">
+                            <h3 class="mt-2 pt-4"> Join the Community and Team Up!</h3>
+                            <p class="mt-3 h6 lead">Comment and interact with hundreds of users on
+                                your favourite blog posts! Check out each other's
+                                cool username's and profile images while you're at it.
+                                <br><br>
+                                Who knows, maybe you'll become friends with them?
+                            </p>
+                        </div>
+                        <div id="wide-img "
+                            class="col-6 d-none d-lg-block d-xl-block d-xxl-block my-auto"
+                            data-aos="fade-left" data-aos-delay="800">
+                            <img class="w-100 me-auto"
+                                src="https://www.cgmagonline.com/wp-content/uploads/2019/05/saints-row-the-third-switch-review-1280x720.jpg"
+                                alt="">
+                        </div>
+                    </div>
+                    <div class="spacing"></div>
+                    <div class="row">
+                        <div class="col-12 mb-3 mt-3 pt-5" data-aos="zoom-in" data-aos-delay="500">
+                            <img class="w-100"
+                                src="https://i.kinja-img.com/gawker-media/image/upload/c_fill,f_auto,fl_progressive,g_center,h_675,pg_1,q_80,w_1200/epbsi3wz1uh4tqi9ekdg.jpg"
+                                alt="">
+                        </div>
+                        <div class="col-12" id="side-text-1" data-aos="flip-up"
+                            data-aos-delay="500">
+                            <h3>CREATE</h3>
+                            <p class="mt-3 h6 lead"> Create your own unique posts that you'd like to
+                                share with the world!
+                                <br><br>
+                                Get started by registering below!
+                            </p>
+                        </div>
+                        <div class="mt-5 mb-5">
+                            <a href="/users/register"
+                                class="btn btn-lg btn-secondary font-weight-bold border-white bg-white glow">REGISTER</a>
+                        </div>
+                        <div class="col-5"></div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div>
+            </div>
+
+        </main>
+
+        <footer class="mt-auto text-white-50">
+            <p>&copy; BrothersinGaming 2021</p>
+        </footer>
+
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+
+    <!-- scroll script Below! -->
+    <script>AOS.init({
+            duration: 1200,
+            delay: 200,
+        })
+    </script>
+</body>
+
+</html>

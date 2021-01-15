@@ -1,0 +1,37 @@
+<% layout('layout/boilerplate')%>
+<%- include('../partials/nav') %>
+
+<header>
+    <link rel="stylesheet" href="/stylesheets/login.css">
+</header>
+<%- include('../partials/flash') %>
+
+<body>
+    
+    
+<div class="container">
+    <h1>Login</h1>
+    <div class="row">
+    <form action="login" method="POST" class="validated-form" novalidate>
+        <div class="mb-3 justify-content-center">
+            <label class="form-label" for="username">Username</label>
+            <input class="form-control" type="text" id="username" name="username" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+    </div>
+        <div class="mb-3">
+            <label class="form-label" for="password">Password</label>
+            <input class="form-control" type="password" id="password" name="password" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <button id='login' class="btn btn-md">Login</button>
+    </form>
+    
+</div>
+
+
+</body>

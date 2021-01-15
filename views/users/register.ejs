@@ -1,0 +1,44 @@
+<% layout('layout/boilerplate')%>
+<%- include('../partials/nav') %>
+<%- include('../partials/flash') %>
+<header>
+    <link rel="stylesheet" href="/stylesheets/register.css">
+</header>
+
+<body>
+    <div class="container">
+        <h1>Register</h1>
+
+        <form action="register" method="POST" class="validated-form" novalidate
+            enctype="multipart/form-data">
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Choose a profile picture (Optional)</label>
+                <input class="form-control" type="file" id="image" name="image">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="username">Username</label>
+                <input class="form-control" type="text" id="username" name="username" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="Email">Email</label>
+                <input class="form-control" type="email" id="email" name="email" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="password">Password</label>
+                <input class="form-control" type="password" id="password" name="password" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <button id="register" class="btn">Register</button>
+        </form>
+    </div>
+
+</body>

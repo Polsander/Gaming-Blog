@@ -1,0 +1,23 @@
+<header>
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+</header>
+
+<footer class="bg-dark py-3 mt-auto">
+    <div class="container-fluid">
+        <!-- <div class="row"> -->
+
+        <div class="col-md-6 my-auto mx-auto d-flex py-1">
+            <span class="text-muted text-footer text-center">&copy; BrothersinGaming 2020 </span>
+            <% if (currentUser) { %>
+                <span class="text-muted text-center text-footer">&nbsp;Signed in as <%=currentUser.username%></span>
+                <% } else {%>
+                    <span class="text-muted text-footer text-center">&nbsp;Visiting as a Guest</span>
+                    <% } %>
+        </div>
+
+       
+        </div>
+        <!-- </div> -->
+    </div>
+
+</footer>
